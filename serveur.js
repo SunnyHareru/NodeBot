@@ -1,7 +1,10 @@
-var http = require('http');
+var express = require('express');
 
-var server = http.createServer(function(req, res) {
-    res.writeHead(200, {"Content-Type": "text/html"});
-    res.end('<p>Un paragraphe <strong>HTML</strong> !</p>');
+var app = express();
+
+app.get('/', function(req, res) {
+    res.setHeader('Content-Type', 'text/plain');
+    res.end('Vous êtes à l\'accueil');
 });
-server.listen(8080);
+
+app.listen(8080);
