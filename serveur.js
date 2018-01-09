@@ -2,6 +2,9 @@ var express = require('express');
 var mysql = require('mysql');
 var bodyParser = require('body-parser')
 
+
+
+/// Connection MySql
 var client= mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
@@ -11,14 +14,18 @@ var client= mysql.createConnection({
 
 client.connect(function(err){
 	if(!err) {
-	    console.log("Database is connected ... nn");    
+	    console.log("Database is connected ... ");    
 	} else {
-	    console.log("Error connecting database ... nn");    
+	    console.log("Error connecting database ... ");    
 	}
 });
 
+
+
 var app = express();
-app.use(express.bodyParser());
+
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 app.get('/', function(req, res) {
     res.setHeader('Content-Type', 'text/plain');
@@ -33,8 +40,7 @@ app.get('/Authentification', function(req, res) {
 app.post('/FenetreConnexion', function(req, res) {
 	var identifiant = req.body.Identifiant,
         motDePasse = req.body.MotDePasse;
-	res.end('Vous etes apres la validation');
-    res.render('Authentification.ejs');
+	res.end('Vous etes apres la validation : '+identifiant);
 });
 
 app.listen(8080);
