@@ -5,7 +5,7 @@ var bodyParser = require('body-parser')
 
 
 /// Connection MySql
-var client= mysql.createConnection({
+var client = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
   password : '',
@@ -40,7 +40,27 @@ app.get('/Authentification', function(req, res) {
 app.post('/FenetreConnexion', function(req, res) {
 	var identifiant = req.body.Identifiant,
         motDePasse = req.body.MotDePasse;
-	res.end('Vous etes apres la validation : '+identifiant);
+
+          if (err) throw err;
+  con.query("SELECT * FROM customers", function (err, result, fields) {
+    if (err) throw err;
+    console.log(result);
+  });
+
+    var sql = "INSERT INTO ndb_usr (usr_mail, usr_psw) VALUES ('"+identifiant+"', '"+motDePasse+"')";	
+    var sql = "INSERT INTO ndb_usr (usr_mail, usr_psw) VALUES ('"+identifiant+"', '"+motDePasse+"')";
+	client.query(sql, function (err, result) {
+	    if (err) throw err;
+	    console.log("1 record inserted");
+	  });
+	res.end('Vous etes apres la validation : '+ identifiant);
 });
 
+
+
 app.listen(8080);
+
+//post creation de donnée
+//put modification
+//get récuperation
+//delete supresseion
