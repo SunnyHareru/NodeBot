@@ -1,11 +1,10 @@
 var express = require('express');
 var bodyParser = require('body-parser')
 
-
 var app = express();
 
-app.use(bodyParser.json()); // support json encoded bodies
-app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', function(req, res) {
     res.setHeader('Content-Type', 'text/plain');
@@ -18,18 +17,51 @@ app.get('/Authentification', function(req, res) {
 
 app.post('/Authentification', function(req, res) {
   	if (req.body.Identifiant == undefined || req.body.Identifiant == ''){
-		res.end("Vous n'avez pas mis d'identifiant");
+		res.write(
+			'<!DOCTYPE html>'+
+			'<html> <head> <meta charset="utf-8" /> </head>'+ 
+			'    <body>'+
+			' 	 <p>Vous n\'avez pas mis d\'identifiant<p>'+
+			'	 <a href="/Authentification">'+
+			'     	<input type="button" value="Retour" onclick="">'+
+			'	 </a>'+
+			'    </body>'+
+			'</html>');
+		res.end();  
 	}
 	else {
 		let Authentification = require('./models/Authentification.js')
-		Authentification.create(req.body.Identifiant,req.body.MotDePasse, function(cb) {
+		Authentification.create(req.body.Identifiant,req.body.MotDePasse, function(cb) {1
+			res.writeHead(200, {"Content-Type": "text/html"});
 			if(cb.length > 0){
-				 res.end("Vous etes bien authentifié");
-	             console.log('success auth', "Authentification du compte");
+				//res.end("Vous etes bien authentifié")
+	            console.log('success auth', "Authentification du compte");
+				res.write(
+					'<!DOCTYPE html>'+
+					'<html> <head> <meta charset="utf-8" /> </head>'+ 
+					'    <body>'+
+					' 	 <p>Vous etes bien authentifié<p>'+
+					'	 <a href="/">'+
+					'     	<input type="button" value="Ok" onclick="">'+
+					'	 </a>'+
+					'    </body>'+
+					'</html>');
+				res.end();
+
 			}
 			else{
-				res.end("Vous etes pas authentifié");
 				console.log('err auth', "Authentification du compte");
+				res.write(
+					'<!DOCTYPE html>'+
+					'<html> <head> <meta charset="utf-8" /> </head>'+ 
+					'    <body>'+
+					' 	 <p>Vous n\'etes pas bien authentifié<p>'+
+					'	 <a href="/Authentification">'+
+					'     	<input type="button" value="Ok" onclick="">'+
+					'	 </a>'+
+					'    </body>'+
+					'</html>');
+				res.end();
 			}
          });
 	}
@@ -37,13 +69,33 @@ app.post('/Authentification', function(req, res) {
 
 app.post('/Enregistrement', function(req, res) {
 	if (req.body.Identifiant == undefined || req.body.Identifiant == ''){
-		res.end("Vous n'avez pas mis d'identifiant");
+		res.write(
+			'<!DOCTYPE html>'+
+			'<html> <head> <meta charset="utf-8" /> </head>'+ 
+			'    <body>'+
+			' 	 <p>Vous n\'avez pas mis d\'identifiant<p>'+
+			'	 <a href="/Authentification">'+
+			'     	<input type="button" value="Retour" onclick="">'+
+			'	 </a>'+
+			'    </body>'+
+			'</html>');
+		res.end();   
 	}
 	else {
 		let Enregistrement = require('./models/Enregistrement.js')
 		Enregistrement.create(req.body.Identifiant,req.body.MotDePasse, function() {
-			 res.end("Vous avez bien creer un utilisateur");
-             console.log('success saves', "Enregistrement du compte");       
+             console.log('success saves', "Enregistrement du compte");
+				res.write(
+					'<!DOCTYPE html>'+
+					'<html> <head> <meta charset="utf-8" /> </head>'+ 
+					'    <body>'+
+					' 	 <p>Enregistrement du compte<p>'+
+					'	 <a href="/Authentification">'+
+					'     	<input type="button" value="Ok" onclick="">'+
+					'	 </a>'+
+					'    </body>'+
+					'</html>');
+				res.end();     
          });
 	}
 });
