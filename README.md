@@ -1,24 +1,35 @@
---> Authentification
-
-Debut dans le nodeJs, 
-
-Page permettant d'ecrire dans une base de donnée Mysql, et de tester si le login et MotDePasse existe.
-
-Pour le bon fonctionnement des pages, mettre en place un base donnée Mysql :
-Le fichier pour creer le sql est dans le projet a la racine (nodebot.sql)
-Une table : ndb_usr avec ->
-`usr_pk` int(11) NOT NULL AUTO_INCREMENT,
-`usr_mail` varchar(255) NOT NULL,
-`usr_psw` varchar(255) NOT NULL,
 
 
-Renseigner les paramettres de connexion à la base de donnée dans un fichier data.json a la racine du projet de tel structure :
+# NodeBot
 
+Barbero bastien et Rodrigues kévin débutants dans nodeJs.
+
+## Authentification
+
+    Premier projet permettant d’écrire dans une base de donnée Mysql, 
+    et de tester si le login et Mot de passe existe.
+
+> Installation
+
+Mettre en place un base donnée Mysql :
+
+**nodebot.sql** --> Sql créant la table nécessaire au projet
+
+> Paramètre
+
+Renseigner les paramètres de connexion à la base de donnée dans un fichier data.json a la racine du projet avec la structure suivante :
+
+```json
 {
     "host" : 		"",
     "user" : 		"",
     "password" : 	"",
     "database" : 	""
 }
+```
+> Lancement
 
-Aller sur la page /Authentification pour voir les formulaires de connection
+- Installer les modules : **-npm install**
+- Lancer **serveur.js** ( le serveur se lance sur le port 8080)
+- Aller sur la page **/Authentification** pour voir les formulaires de
+   connexion
