@@ -1,11 +1,12 @@
 let  mysql = require('mysql');
+const { host, user, password, database } = require("../data.json");
 
 /// Connection MySql
 let connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : '',
-  database : 'nodebot',
+  host,
+  user,
+  password,
+  database,
 });
 
 

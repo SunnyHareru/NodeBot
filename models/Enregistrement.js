@@ -6,11 +6,11 @@ class Enregistrement {
 		var post  = {usr_mail: Identifiant, usr_psw: MotDePasse};
 		connection.query('INSERT INTO ndb_usr SET ?',post,function(err, result) {
              if (err){
-           		console.log('Err Enregistrement', err);
+           		console.log('Err Enregistrement : ', err);
              }else{
-             	console.log(result);
+             	console.log('Result Enregistrement : ',result);
              } 
-             cb(result);
+             cb();
          });
 	}
 }
