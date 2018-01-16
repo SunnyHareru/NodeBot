@@ -1,66 +1,103 @@
 var express = require('express');
-var mysql = require('mysql');
 var bodyParser = require('body-parser')
-
-
-
-/// Connection MySql
-var client = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : '',
-  database : 'nodebot',
-});
-
-client.connect(function(err){
-	if(!err) {
-	    console.log("Database is connected ... ");    
-	} else {
-	    console.log("Error connecting database ... ");    
-	}
-});
-
-
 
 var app = express();
 
-app.use(bodyParser.json()); // support json encoded bodies
-app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', function(req, res) {
     res.setHeader('Content-Type', 'text/plain');
-    res.end('Vous êtes à l\'accueil');
+    res.end('Vous etes a l\'accueil');
 });
-
 
 app.get('/Authentification', function(req, res) {
     res.render('Authentification.ejs');
 });
 
-app.post('/FenetreConnexion', function(req, res) {
-	var identifiant = req.body.Identifiant,
-        motDePasse = req.body.MotDePasse;
+app.post('/Authentification', function(req, res) {
+  	if (req.body.Identifiant == undefined || req.body.Identifiant == ''){
+		res.write(
+			'<!DOCTYPE html>'+
+			'<html> <head> <meta charset="utf-8" /> </head>'+ 
+			'    <body>'+
+			' 	 <p>Vous n\'avez pas mis d\'identifiant<p>'+
+			'	 <a href="/Authentification">'+
+			'     	<input type="button" value="Retour" onclick="">'+
+			'	 </a>'+
+			'    </body>'+
+			'</html>');
+		res.end();  
+	}
+	else {
+		let Authentification = require('./models/Authentification.js')
+		Authentification.create(req.body.Identifiant,req.body.MotDePasse, function(cb) {1
+			res.writeHead(200, {"Content-Type": "text/html"});
+			if(cb.length > 0){
+				//res.end("Vous etes bien authentifié")
+	            console.log('success auth', "Authentification du compte");
+				res.write(
+					'<!DOCTYPE html>'+
+					'<html> <head> <meta charset="utf-8" /> </head>'+ 
+					'    <body>'+
+					' 	 <p>Vous etes bien authentifié<p>'+
+					'	 <a href="/">'+
+					'     	<input type="button" value="Ok" onclick="">'+
+					'	 </a>'+
+					'    </body>'+
+					'</html>');
+				res.end();
 
-          if (err) throw err;
-  con.query("SELECT * FROM customers", function (err, result, fields) {
-    if (err) throw err;
-    console.log(result);
-  });
-
-    var sql = "INSERT INTO ndb_usr (usr_mail, usr_psw) VALUES ('"+identifiant+"', '"+motDePasse+"')";	
-    var sql = "INSERT INTO ndb_usr (usr_mail, usr_psw) VALUES ('"+identifiant+"', '"+motDePasse+"')";
-	client.query(sql, function (err, result) {
-	    if (err) throw err;
-	    console.log("1 record inserted");
-	  });
-	res.end('Vous etes apres la validation : '+ identifiant);
+			}
+			else{
+				console.log('err auth', "Authentification du compte");
+				res.write(
+					'<!DOCTYPE html>'+
+					'<html> <head> <meta charset="utf-8" /> </head>'+ 
+					'    <body>'+
+					' 	 <p>Vous n\'etes pas bien authentifié<p>'+
+					'	 <a href="/Authentification">'+
+					'     	<input type="button" value="Ok" onclick="">'+
+					'	 </a>'+
+					'    </body>'+
+					'</html>');
+				res.end();
+			}
+         });
+	}
 });
 
-
+app.post('/Enregistrement', function(req, res) {
+	if (req.body.Identifiant == undefined || req.body.Identifiant == ''){
+		res.write(
+			'<!DOCTYPE html>'+
+			'<html> <head> <meta charset="utf-8" /> </head>'+ 
+			'    <body>'+
+			' 	 <p>Vous n\'avez pas mis d\'identifiant<p>'+
+			'	 <a href="/Authentification">'+
+			'     	<input type="button" value="Retour" onclick="">'+
+			'	 </a>'+
+			'    </body>'+
+			'</html>');
+		res.end();   
+	}
+	else {
+		let Enregistrement = require('./models/Enregistrement.js')
+		Enregistrement.create(req.body.Identifiant,req.body.MotDePasse, function() {
+             console.log('success saves', "Enregistrement du compte");
+				res.write(
+					'<!DOCTYPE html>'+
+					'<html> <head> <meta charset="utf-8" /> </head>'+ 
+					'    <body>'+
+					' 	 <p>Enregistrement du compte<p>'+
+					'	 <a href="/Authentification">'+
+					'     	<input type="button" value="Ok" onclick="">'+
+					'	 </a>'+
+					'    </body>'+
+					'</html>');
+				res.end();     
+         });
+	}
+});
 
 app.listen(8080);
-
-//post creation de donnée
-//put modification
-//get récuperation
-//delete supresseion
