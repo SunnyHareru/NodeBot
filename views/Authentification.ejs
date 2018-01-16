@@ -9,9 +9,29 @@
 
   <body>
     <div class="Formulaire">
-      <form action="FenetreConnexion" method="post">
+      <form action="Authentification" method="post">
       <fieldset>
         <legend>Connexion</legend>
+        
+        <label for="Identifiant" > Identifiant : </label><br />
+        <input type="text" name="Identifiant" id="Identifiant" /><br />
+        
+        <label for="MotDePasse" > MotDePasse : </label><br />
+        <input type="text" name="MotDePasse" id="MotDePasse" /><br />
+        
+        <input type="submit" name="sub" id="sub" /><br />
+        
+        <input type="reset" name="res" id="res" /><br />
+        
+        </fieldset>
+      </form>
+    </div>
+
+
+    <div class="Formulaire">
+      <form action="Enregistrement" method="post">
+      <fieldset>
+        <legend>Enregistrement</legend>
         
         <label for="Identifiant" > Identifiant : </label><br />
         <input type="text" name="Identifiant" id="Identifiant" /><br />
