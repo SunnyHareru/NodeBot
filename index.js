@@ -31,7 +31,6 @@ bot.on('message', function(message){
 
 				message.channel.send({embed: {
 				    color: 3447003,
-				    title: "Stat League Of Legend",
 				    url: json.data.link,
 				    image: {
 				    	url : json.data.link
