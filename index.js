@@ -1,12 +1,13 @@
 const Discord = require('discord.js')
 const webshot = require('webshot');
 const imgur   = require('imgur');
- 
+ const path = require('path');
+
 const bot = new Discord.Client()
 const { token } = require("./token.json");
 
+
 const { mail, password, ClientID } = require("./imgur.json");
-const { token } = require("./token.json");
 
 imgur.setClientId(ClientID);
 imgur.setCredentials(mail, password, ClientID);
@@ -20,28 +21,25 @@ bot.on('message', function(message){
         message.reply('Dont let your dreams be dreams !')
     }
     if (message.content === 'i'){
+    	var url = `file:///${path.join(__dirname, 'index.html')}`;
+    	console.log(url);
 
-    	webshot('google.com', 'stat.png', function(err) {
+    	webshot(url, 'stat.png' ,function(err) {
 
 			imgur.uploadFile('stat.png').then(function (json) {
 		         console.log(json.data.link);
 
 				message.channel.send({embed: {
 				    color: 3447003,
-				    author: {
-				      name: bot.user.username,
-				      icon_url: bot.user.avatarURL
-				    },
-				    title: "Titre d'un embed",
+				    title: "Stat League Of Legend",
 				    url: json.data.link,
-				    description: "Petit test desc.",
 				    image: {
 				    	url : json.data.link
 				    },
 				    timestamp: new Date(),
 				    footer: {
 				      icon_url: bot.user.avatarURL,
-				      text: "© Example"
+				      text: "© Stat"
 				    }
 				  }
 				});
@@ -51,9 +49,6 @@ bot.on('message', function(message){
 		        console.error(err.message);
 		    });
 		});
-
-
-
 
     }
 })
