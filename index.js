@@ -3,6 +3,7 @@ const webshot = require('webshot');
 const imgur   = require('imgur');
  
 const bot = new Discord.Client()
+const { token } = require("./token.json");
 
 const { mail, password, ClientID } = require("./imgur.json");
 const { token } = require("./token.json");
@@ -56,5 +57,6 @@ bot.on('message', function(message){
 
     }
 })
+
 
 bot.login(token)
