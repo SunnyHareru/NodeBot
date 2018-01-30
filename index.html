@@ -1,39 +1,141 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>title</title>
-  <link rel="stylesheet" href="style.css" type="text/css">
-  </head>
-  <body>
+
+<head>
+  <meta charset="UTF-8">
+  <title>title</title>
+  <style>
+    @font-face {
+      font-family: AstronBoyVideo;
+      src: url(polices/astronboy/astronboyvideo.woff);
+    }
+
+    @font-face {
+      font-family: AstronBoyItalic;
+      src: url(polices/astronboy/astronboyitalic.woff);
+    }
+
+    main {
+      font-family: AstronBoyVideo;
+      width: 800px;
+      height: 489px;
+      margin: 0 auto;
+      padding: 20px;
+      background: url("media/img/irelia.jpg") no-repeat center 0px;
+    }
+
+    header h2 {
+      display: block;
+      width: 58%;
+      height: auto;
+      color: aquamarine;
+      margin: 0 auto;
+      font-size: 46px;
+    }
+
+    section {
+      width: 100%;
+      height: auto;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .stats {
+      width: 33%;
+      padding: 10px;
+      background: rgb(255, 255, 255, 0.7);
+    }
+
+    .stats p {
+      font-size: 28px;
+      font-family: AstronBoyItalic;
+    }
+
+    .stats span {
+      color: rgb(169, 169, 169);
+    }
+
+    .stats .kda,
+    .stats .played,
+    .stats .wins,
+    .stats .mostpick,
+    .stats .rank {
+      width: 80%;
+      height: auto;
+      margin: 40px auto;
+    }
+  </style>
+</head>
+
+<body>
   <main>
     <header>
-        <h2>League of legends Stats</h2>
+      <h2>League of legends Stats</h2>
     </header>
     <section>
-        <div class="stats normal">
-          <div class="kda" id="kda"><p><span>KDA</span> : 1.02</p></div>
-          <div class="played" id="played"><p><span>Games played</span> : 137</p></div>
-          <div class="wins" id="wins"><p><span>Wins</span> : 90</p></div>
-          <div class="mostpick" id="mostpick"><p><span>Most picked</span> : Leona</p></div>
+      <div class="stats normal">
+        <div class="kda" id="kda">
+          <p>
+            <span>KDA</span> : 1.02</p>
         </div>
-        <div class="stats 3v3">
-            <div class="kda" id="kda"><p><span>KDA</span> : 1.98</p></div>
-            <div class="played" id="played"><p><span>Games played</span> : 22</p></div>
-            <div class="wins" id="wins"><p><span>Wins</span> : 18</p></div>
-            <div class="mostpick" id="mostpick"><p><span>Most picked</span> : Master Yi</p></div>
+        <div class="played" id="played">
+          <p>
+            <span>Games played</span> : 137</p>
         </div>
-        <div class="stats ranked">
-            <div class="kda" id="kda"><p><span>KDA</span> : 2.35</p></div>
-            <div class="played" id="played"><p><span>Games played</span> : 679</p></div>
-            <div class="rank" id="rank"><p><span>Rank </span> : Platinum II</p></div>
-            <div class="wins" id="wins"><p><span>Wins</span> : 357</p></div>
-            <div class="mostpick" id="mostpick"><p><span>Most picked</span> : Vayne</p></div>
+        <div class="wins" id="wins">
+          <p>
+            <span>Wins</span> : 90</p>
         </div>
+        <div class="mostpick" id="mostpick">
+          <p>
+            <span>Most picked</span> : Leona</p>
+        </div>
+      </div>
+      <div class="stats 3v3">
+        <div class="kda" id="kda">
+          <p>
+            <span>KDA</span> : 1.98</p>
+        </div>
+        <div class="played" id="played">
+          <p>
+            <span>Games played</span> : 22</p>
+        </div>
+        <div class="wins" id="wins">
+          <p>
+            <span>Wins</span> : 18</p>
+        </div>
+        <div class="mostpick" id="mostpick">
+          <p>
+            <span>Most picked</span> : Master Yi</p>
+        </div>
+      </div>
+      <div class="stats ranked">
+        <div class="kda" id="kda">
+          <p>
+            <span>KDA</span> : 2.35</p>
+        </div>
+        <div class="played" id="played">
+          <p>
+            <span>Games played</span> : 679</p>
+        </div>
+        <div class="rank" id="rank">
+          <p>
+            <span>Rank </span> : Platinum II</p>
+        </div>
+        <div class="wins" id="wins">
+          <p>
+            <span>Wins</span> : 357</p>
+        </div>
+        <div class="mostpick" id="mostpick">
+          <p>
+            <span>Most picked</span> : Vayne</p>
+        </div>
+      </div>
     </section>
     <footer>
-      
+
     </footer>
   </main>
-  </body>
+</body>
+
 </html>
