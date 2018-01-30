@@ -8,9 +8,18 @@
     "discord.js": "^11.3.0",
     "ejs": "^2.5.7",
     "express": "^4.16.2",
-    "mysql": "^2.15.0"
+    "imgur": "^0.2.1",
+    "mysql": "^2.15.0",
+    "webshot": "^0.18.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "eslint": "^4.15.0",
+    "eslint-config-standard": "^11.0.0-beta.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
