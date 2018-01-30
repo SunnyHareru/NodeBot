@@ -3,7 +3,67 @@
   <head>
     <meta charset="UTF-8">
     <title>title</title>
-  <link rel="stylesheet" href="style.css" type="text/css">
+  <style>
+    @font-face {
+      font-family: AstronBoyVideo;
+      src: url(polices/astronboy/astronboyvideo.woff);
+    }
+
+    @font-face {
+      font-family: AstronBoyItalic;
+      src: url(polices/astronboy/astronboyitalic.woff);
+    }
+
+    main {
+      font-family: AstronBoyVideo;
+      width: 800px;
+      height: 489px;
+      margin: 0 auto;
+      padding: 20px;
+      background: url('file:///${path.join(__dirname, '/media/img/irelia.jpg')}') no-repeat center 0px;
+    }
+
+    header h2 {
+      display: block;
+      width: 58%;
+      height: auto;
+      color: aquamarine;
+      margin: 0 auto;
+      font-size: 46px;
+    }
+
+    section {
+      width: 100%;
+      height: auto;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .stats {
+      width: 33%;
+      padding: 10px;
+      background: rgb(255, 255, 255, 0.7);
+    }
+
+    .stats p {
+      font-size: 28px;
+      font-family: AstronBoyItalic;
+    }
+
+    .stats span {
+      color: rgb(169, 169, 169);
+    }
+
+    .stats .kda,
+    .stats .played,
+    .stats .wins,
+    .stats .mostpick,
+    .stats .rank {
+      width: 80%;
+      height: auto;
+      margin: 40px auto;
+    }
+  </style>
   </head>
   <body>
   <main>
