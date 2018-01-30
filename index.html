@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-  <meta charset="UTF-8">
-  <title>title</title>
+  <head>
+    <meta charset="UTF-8">
+    <title>title</title>
   <style>
     @font-face {
       font-family: AstronBoyVideo;
@@ -21,7 +20,7 @@
       height: 489px;
       margin: 0 auto;
       padding: 20px;
-      background: url("media/img/irelia.jpg") no-repeat center 0px;
+      background: url('file:///${path.join(__dirname, '/media/img/irelia.jpg')}') no-repeat center 0px;
     }
 
     header h2 {
@@ -65,9 +64,8 @@
       margin: 40px auto;
     }
   </style>
-</head>
-
-<body>
+  </head>
+  <body>
   <main>
     <header>
       <h2>League of legends Stats</h2>
