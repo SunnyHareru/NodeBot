@@ -1,7 +1,8 @@
 const Discord = require('discord.js')
 const webshot = require('webshot');
 const imgur   = require('imgur');
- const path = require('path');
+const path = require('path');
+var leaderboard = require('lolking-leaderboard');
 
 const bot = new Discord.Client()
 const { token } = require("./token.json");
@@ -9,6 +10,12 @@ const { token } = require("./token.json");
 
 const { mail, password, ClientID } = require("./imgur.json");
 
+leaderboard('euw', 1, function (error, data) {
+	if (error) {
+		throw error;
+	}
+	 console.log(data);
+});
 imgur.setClientId(ClientID);
 imgur.setCredentials(mail, password, ClientID);
 
@@ -28,7 +35,8 @@ bot.on('message', function(message){
 
 			imgur.uploadFile('stat.png').then(function (json) {
 		         console.log(json.data.link);
-
+		
+				 
 				message.channel.send({embed: {
 				    color: 3447003,
 				    url: json.data.link,
